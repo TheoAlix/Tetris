@@ -47,10 +47,12 @@ public abstract class Piece implements PiecePuzzle{
     }
 
     public boolean estOccupee(int colonne, int ligne){
+        // A FAIRE
         return true;
     }
 
     public int[] centreGrille(int colonne, int ligne){
+        // A FAIRE
         int[] res = {1,2,3};
         
         return res;
@@ -59,6 +61,7 @@ public abstract class Piece implements PiecePuzzle{
 
     @Override
     public String toString(){
+        // A FAIRE
         String res = "";
         for(int i=0; i<this.tab.length; i++){
             for(int j=0; j<this.tab[0].length; j++){
