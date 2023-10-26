@@ -1,4 +1,6 @@
-package filsrouge;
+package pieces;
+
+import java.util.List;
 
 public interface PiecePuzzle{
 
@@ -12,7 +14,7 @@ public interface PiecePuzzle{
 
     public boolean estOccupee(int colonne, int ligne);
 
-    public int[] centreGrille(int colonne, int ligne);
+    public List<Integer> centreGrille();
 
     //public int[] centrePiece(Boolean[][] grilleJeu);
 }
