@@ -12,7 +12,6 @@ public class T extends Piece{
         if (longueur >= 2){
             List<Boolean> tmp = new ArrayList<>();
             for (int i = this.tab.size(); i < longueur; i++) {
-                System.out.println(i);
                 tmp = new ArrayList<>();
                 tmp.add(false);
                 tmp.add(true);
@@ -23,23 +22,24 @@ public class T extends Piece{
     }
 
     public static void main(String[] args){
-            Piece p = new T(4,0);
+            Piece p = new T(8,0);
             System.out.println("----------------------------");
             System.out.println(p);
             System.out.print("largeurActu :");
             System.out.println(p.largeurActuelle());
             System.out.print("hauteurActu :");
             System.out.println(p.hauteurActuelle());
-            System.out.print("largeurActu :");
+            System.out.print("centre Grille :");
             System.out.println(p.centreGrille());
             p.rotateLeft();
+            
             System.out.println("----------------------------");
             System.out.println(p);
             System.out.print("largeurActu :");
             System.out.println(p.largeurActuelle());
             System.out.print("hauteurActu :");
             System.out.println(p.hauteurActuelle());
-            System.out.print("largeurActu :");
+            System.out.print("centre Grille :");
             System.out.println(p.centreGrille());
         }
 }
