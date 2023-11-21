@@ -1,28 +1,28 @@
-package pieces ;
+package pieces;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class T extends Piece{
+public class L extends Piece{
 
-    public T(int longueur, int orientation){
+    public L(int longueur, int orientation){
         super(longueur,orientation);
-        this.tab.add(List.of(true, true, true));
-        this.tab.add(List.of(false, true, false));
+        this.tab.add(List.of(true,false, false));
         if (longueur >= 2){
             List<Boolean> tmp = new ArrayList<>();
             for (int i = this.tab.size(); i < longueur-1; i++) {
                 tmp = new ArrayList<>();
-                tmp.add(false);
                 tmp.add(true);
+                tmp.add(false);
                 tmp.add(false);
                 this.tab.add(tmp);
             }
         }
+        this.tab.add(List.of(true,true, true));
     }
 
     public static void main(String[] args){
-            Piece p = new T(8,0);
+            Piece p = new L(5,0);
             System.out.println("----------------------------");
             System.out.println(p);
             System.out.print("largeurActu :");
