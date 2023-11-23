@@ -66,33 +66,66 @@ public boolean intersect(Piece piece1, int x1, int y1, Piece piece2) {
     @Override
     public String toString() {
         // TODO : Créer une grille de caractères représentant le plateau de jeu puis retourner la chaîne de caractères la représentant.
-        String res = "" ;
-        for(int i = 0 ; i < this.largeur; i++ ){
-            for(int j = 0; j < this.hauteur; i++){
-                for (Piece p : map) {
-                    if (p.x == i && p.y == j){
-                        res += "scooby";
-                    }
-                    else{
-                        res += "doo";
-                    }
-            }
-            res += "\n";
+        String[][] grille = new String[hauteur][largeur];
+
+        for (int i = 0; i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++) {
+                grille[i][j] = "□ ";
             }
         }
-        return res;
-    }
 
+        // Placer chaque pièce dans la grille
+        for (Piece piece : map) {
+
+            int[] ligne = piece.indexLigneActu();
+            int[] col = piece.indexColActu();
+            if (piece.orientation % 2 == 0){
+                for (int i = 0; i < piece.tab.size(); i++) {
+                    for (int j = 0; j < piece.tab.get(0).size(); j++) {
+                        if(piece.tab.get(col[i]).get(ligne[j])) {
+                            grille[piece.y + i][piece.x + j] = "■ ";
+                        }
+                    }
+                }
+            }
+            else{
+                for (int i = 0; i < piece.tab.get(0).size(); i++) {
+                    for (int j = 0; j < piece.tab.size(); j++) {
+                        if(piece.tab.get(ligne[j]).get(col[i])){
+                            grille[piece.y + i][piece.x + j] = "■ ";
+                        }
+                    }
+                }
+            }
+        }
+
+        // Convertir la grille en chaîne de caractères
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++) {
+                result.append(grille[i][j]);
+            }
+            result.append('\n');
+        }
+
+        return result.toString();
+    
+    }
     public static void main(String[] args){
-        Piece p1 = new L();
-        Piece p2 = new L();
+        Piece p1 = new T(7,1);
+        Piece p2 = new T(4,0);
+        Piece p3 = new T(4,0);
+        System.out.println(p1);
+        System.out.println(p2);
         p1.setPosition(0,0);
-        p2.setPosition(2,0);
-        PlateauPuzzle map = new PlateauPuzzle(20,20);
+        p2.setPosition(27,26);
+        p3.setPosition(5,3);
+        PlateauPuzzle map = new PlateauPuzzle(30,30);
         System.out.println("ajouter p1 : " + map.ajouterPiece(p1,p1.x,p1.y));
         System.out.println("ajouter p2 : " + map.ajouterPiece(p2,p2.x,p2.y));
+        System.out.println("ajouter p1 : " + map.ajouterPiece(p3,p3.x,p3.y));
         System.out.println(map.intersect(p1,0,0,p2));
-        //System.out.println(map.toString());
+        System.out.println(map.toString());
     }
 }
 
