@@ -79,22 +79,34 @@ public class GameCLI{
         return this.board.toString();
     }
 
-    public int score(){
-        // Méthode qui calcul le score de l'état actuel de la partie (Le but étant de faire le plus petit score possible)
-        int minXGauche;
-        int minYGauche;
+    // public int score(){
+    //     // Méthode qui calcul le score de l'état actuel de la partie (Le but étant de faire le plus petit score possible)
+    //     int minXGauche;
+    //     int minYGauche;
 
-        int maxXDroit;
-        int maxYDroit;
-        for(Piece p : this.board.map){
+    //     int maxXDroit;
+    //     int maxYDroit;
+    //     for(Piece p : this.board.map){
 
+    //     }
+
+    //     int longueur = maxXDroit - minXGauche;
+    //     int largeur = maxYDroit - maxYGauche;
+    //     return longueur*largeur;
+    // }
+    public boolean move(Integer x, Integer y, int newX, int newY){
+        // x et y doivent être le centre de la pièce (largeur/2,hauteur/2)
+        Piece p = this.board.deletePiece(x,y);
+        p.setPosition(newX, newY);
+        if(this.board.ajouterPiece(p,newX,newY)){
+            return true;
         }
-
-        int longueur = maxXDroit - minXGauche;
-        int largeur = maxYDroit - maxYGauche;
-        return longueur*largeur;
+        this.board.ajouterPiece(p,x,y);
+        return false;
     }
 
+
+  
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         // System.out.println("Entre la taille de la grille (exemple : 3 donnera une grille 3x3)");
@@ -108,14 +120,20 @@ public class GameCLI{
         int tailleGrille = 30;
         int nbPieces =12;
         GameCLI game = new GameCLI(tailleGrille,tailleGrille,nbPieces);
+        ViewConsole view = new ViewConsole(game.board);
         boolean running = true;
+        Piece pi = new I(4,0);
+        game.board.ajouterPiece(pi,1,4);
+        List<Integer> res = pi.centreGrille();
+        System.out.println( "Move est : " + game.move(res.get(0),res.get(1),2,4));
         for (Piece p : game.board.map){
             List<Integer> tmp = p.centreGrille();
             System.out.println(("Centre :" + String.valueOf(tmp.get(0)) + String.valueOf(tmp.get(1))));
         }
         while(running){
             
-            System.out.println(game);
+            game.board.modeleMisAJour();
+
 
             Piece tmp;
             int x = 0;
