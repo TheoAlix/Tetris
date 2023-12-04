@@ -158,19 +158,6 @@ public class GameCLI{
         return false;
     }
 
-    public boolean turnLeft(int x, int y){
-        /**
-         * Fonction qui permet de tourner une pièce à gauche
-         * @param x est l'abscisse du centre de la pièce
-         * @param y est l'ordonnée du centre de la pièce
-         */
-        // x et y doivent être le centre de la pièce (largeur/2,hauteur/2)
-        Piece p = this.board.deletePiece(x,y);
-        if (p.longueur != 0){
-            
-        }
-        return false;
-    }
 
     public void jouer(){
         /**
