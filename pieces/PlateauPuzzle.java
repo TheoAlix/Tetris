@@ -13,7 +13,7 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
         map = new ArrayList<Piece>();
     }
 
-   public boolean ajouterPiece(Piece piece, int x, int y) {
+    public boolean ajouterPiece(Piece piece, int x, int y) {
         if (x < 0 || y < 0 || x + piece.largeurActuelle() > this.largeur || x + piece.hauteurActuelle() > this.largeur || y + piece.hauteurActuelle() + piece.longueur > this.hauteur || y + piece.largeurActuelle() + piece.longueur > this.hauteur ||x + 1 > this.largeur || y + 1 > this.hauteur) {
             return false;
         }
@@ -36,12 +36,10 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
     }
 
     public Piece deletePiece(int x, int y){
-        List<Integer> res = new ArrayList<>();
-        res.add(x);
-        res.add(y);
+        // Avec x et y la case supérieur gauche de leur grille
         Piece error = new T(0,0);
         for (Piece p : map){
-            if(res == p.centreGrille()){
+            if(p.x == x && p.y == y){
                 map.remove(p);
                 return p;
             }
@@ -83,17 +81,23 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
         }
     }
 
-    @Override
-    public String toString() {
-        // TODO : CrÃ©er une grille de caractÃ¨res reprÃ©sentant le plateau de jeu puis retourner la chaÃ®ne de caractÃ¨res la reprÃ©sentant.
-        String[][] grille = new String[hauteur+1][largeur+1];
-
-        for (int i = 0; i < hauteur+1; i++) {
-            for (int j = 0; j < largeur+1; j++) {
+    private String[][] initGrille(String[][] grille){
+        for (int i = 0; i < this.hauteur+1; i++) {
+            for (int j = 0; j < this.largeur+1; j++) {
                 grille[i][j] = " .";
             }
         }
-        // Placer chaque piÃ¨ce dans la grille
+        return grille;
+    }
+
+    @Override
+    public String toString() {
+        // TODO : Créer une grille de caractères représentant le plateau de jeu puis retourner la chaîne de caractères la représentant.
+        String[][] grille = new String[this.hauteur+1][this.largeur+1];
+        
+        grille = initGrille(grille);
+
+        // Placer chaque pièce dans la grille
         for (Piece piece : map) {
 
             int[] ligne = piece.indexLigneActu();
@@ -104,11 +108,10 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
                 for (int i = 0; i < piece.tab.size(); i++) {
                     for (int j = 0; j < piece.tab.get(0).size(); j++) {
                         if(piece.tab.get(col[i]).get(ligne[j])) {
-                            if(i == centreX && j == centreY){
+                            grille[piece.y + i+1][piece.x + j+1] = " X";
+                        }
+                        if(i == centreX && j == centreY){
                                 grille[piece.y + i + 1][piece.x + j + 1] = " O";
-                            }else{
-                                grille[piece.y + i+1][piece.x + j+1] = " X";
-                            }
                         }
                     }
                 }
@@ -117,14 +120,17 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
                 for (int i = 0; i < piece.tab.get(0).size(); i++) {
                     for (int j = 0; j < piece.tab.size(); j++) {
                         if(piece.tab.get(ligne[j]).get(col[i])){
-                            grille[piece.y + i+1][piece.x + j+1] = " X";
+                            grille[piece.y + i + 1][piece.x + j + 1] = " X";
+                        }
+                        if(i == centreX && j == centreY){
+                                grille[piece.y + i + 1][piece.x + j + 1] = " O";
                         }
                     }
                 }
             }
         }
 
-        // Convertir la grille en chaÃ®ne de caractÃ¨res
+        // Convertir la grille en chaîne de caractères
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < hauteur+1; i++) {
             for (int j = 0; j < largeur+1; j++) {
@@ -160,7 +166,6 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
         }
 
         return result.toString();
-    
     }
 
     public void modeleMisAJour(){
