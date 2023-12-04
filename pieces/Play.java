@@ -1,6 +1,4 @@
-package bataille_navale.jeu;
-
-import bataille_navale.joueur.*;
+package pieces;
 
 /**
  * Classe qui permet de lancer le jeu
@@ -13,10 +11,10 @@ public class Play {
      */
     public static void main(String args[]){
 
-        GenericJoueur j1 = new Humain("aa",1,1,2,1);
-        GenericJoueur j2 = new RandomPlayer(1,1,2,1);
 
-        Game game = new Game(j1,j2);
+        int tailleGrille = 30;
+        int nbPieces =12;
+        GameCLI game = new GameCLI(tailleGrille,tailleGrille,nbPieces);
         game.jouer();
     }    
     
