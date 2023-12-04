@@ -105,18 +105,8 @@ public class GameCLI{
         return false;
     }
 
-
-  
-    public static void main(String[] args){
+    public void jouer(){
         Scanner scanner = new Scanner(System.in);
-        // System.out.println("Entre la taille de la grille (exemple : 3 donnera une grille 3x3)");
-        // int tailleGrille = Integer.valueOf(scanner.nextLine());
-        // System.out.println("Entre le nombre de pièces ");
-        // int nbPieces = Integer.valueOf(scanner.nextLine());
-        // if(nbPieces > tailleGrille){
-        //     System.out.println("Plus de pièces que de lignes/colonnes ");
-        //     return;
-        // }
         int tailleGrille = 30;
         int nbPieces =12;
         GameCLI game = new GameCLI(tailleGrille,tailleGrille,nbPieces);
@@ -124,8 +114,10 @@ public class GameCLI{
         boolean running = true;
         Piece pi = new I(4,0);
         game.board.ajouterPiece(pi,1,4);
+        game.board.modeleMisAJour();
         List<Integer> res = pi.centreGrille();
         System.out.println( "Move est : " + game.move(res.get(0),res.get(1),2,4));
+        game.board.modeleMisAJour();
         for (Piece p : game.board.map){
             List<Integer> tmp = p.centreGrille();
             System.out.println(("Centre :" + String.valueOf(tmp.get(0)) + String.valueOf(tmp.get(1))));
@@ -175,4 +167,5 @@ public class GameCLI{
             }
         }
     }
+  
 }
