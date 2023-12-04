@@ -21,6 +21,8 @@ public class T extends Piece{
         }
     }
 
+    public String getType(){return "T";}
+
     public static void main(String[] args){
             Piece p = new T(8,0);
             System.out.println("----------------------------");

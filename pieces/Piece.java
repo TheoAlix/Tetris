@@ -9,13 +9,15 @@ public abstract class Piece implements PiecePuzzle{
     public int y;
     List<List<Boolean>> tab = new ArrayList<>();
     public int orientation; // 0 = 0°, 1 = 90°, 2 = 180°, 3 = 270° (sens horaire)
+    public int longueur;
 
     public Piece(int longueur, int orientation){
         super();
         this.orientation = orientation;
+        this.longueur = longueur;
     }
 
-    public void setPostion(int x,int y){
+    public void setPosition(int x,int y){
         this.x = x;
         this.y = y;
     }
@@ -39,6 +41,7 @@ public abstract class Piece implements PiecePuzzle{
     }
 
     public int largeurActuelle(){
+        // Renvoie la largeur actuelle de la pièce suivant sa rotation
         if(this.orientation == 0 || this.orientation == 2){
             return this.tab.size();
         }
@@ -48,6 +51,7 @@ public abstract class Piece implements PiecePuzzle{
     }
 
     public int hauteurActuelle(){
+        // Renvoie la hauteur actuelle de la pièce suivant sa rotation
         if(this.orientation == 0 || this.orientation == 2){
             return this.tab.get(0).size();
         }

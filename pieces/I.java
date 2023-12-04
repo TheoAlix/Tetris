@@ -3,28 +3,25 @@ package pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rec extends Piece{
+public class I extends Piece{
 
-    public Rec(int longueur, int orientation){
+    public I(int longueur, int orientation){
         super(longueur,orientation);
-        this.tab.add(List.of(true,true, true));
+        this.tab.add(List.of(true));
         if (longueur >= 2){
             List<Boolean> tmp = new ArrayList<>();
-            for (int i = this.tab.size(); i < longueur-1; i++) {
+            for (int i = this.tab.size(); i < longueur; i++) {
                 tmp = new ArrayList<>();
-                tmp.add(true);
-                tmp.add(true);
                 tmp.add(true);
                 this.tab.add(tmp);
             }
         }
-        this.tab.add(List.of(true,true, true));
     }
 
-    public String getType(){return "Rec";}
+    public String getType(){return "I";}
 
     public static void main(String[] args){
-            Piece p = new Rec(5,0);
+            Piece p = new I(8,0);
             System.out.println("----------------------------");
             System.out.println(p);
             System.out.print("largeurActu :");

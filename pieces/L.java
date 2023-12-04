@@ -21,6 +21,23 @@ public class L extends Piece{
         this.tab.add(List.of(true,true, true));
     }
 
+    public String getType(){return "L";}
+
+    @Override
+    public List<Integer> centreGrille(){
+        List<Integer> res = new ArrayList<>();
+        if(this.orientation %2 == 0){
+            res.add(this.largeurActuelle()/2);
+            res.add(this.hauteurActuelle()/2-1);
+        }
+        else{
+            res.add(this.largeurActuelle()/2-1);
+            res.add(this.hauteurActuelle()/2);
+        }
+        
+        return res;
+    }
+
     public static void main(String[] args){
             Piece p = new L(5,0);
             System.out.println("----------------------------");
