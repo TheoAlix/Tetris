@@ -14,6 +14,12 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
     }
 
     public boolean ajouterPiece(Piece piece, int x, int y) {
+        /*
+         * Fonction qui ajoute une pièce à la map
+         * @param piece est la pièce à ajouter
+         * @param x est la position x de la pièce
+         * @param y est la position y de la pièce
+         */
         if (x < 0 || y < 0 || x + piece.largeurActuelle() > this.largeur || x + piece.hauteurActuelle() > this.largeur || y + piece.hauteurActuelle() + piece.longueur > this.hauteur || y + piece.largeurActuelle() + piece.longueur > this.hauteur ||x + 1 > this.largeur || y + 1 > this.hauteur) {
             return false;
         }
@@ -28,6 +34,7 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
     }
 
     public boolean deplacerPiece(Piece piece, int newX, int newY) {
+        // Fonction qui déplace la pièce qui a pour centre x,y
         if (ajouterPiece(piece, newX, newY)) {
             map.remove(piece);
             return true;
@@ -36,6 +43,7 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
     }
 
     public Piece deletePiece(int x, int y){
+        // Fonction qui supprime la pièce qui a pour centre x,y
         // Avec x et y la case supérieur gauche de leur grille
         Piece error = new T(0,0);
         for (Piece p : map){
@@ -82,6 +90,10 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
     }
 
     private String[][] initGrille(String[][] grille){
+        /*
+         * Fonction qui initialise la grille
+         * @param grille est la grille a initialiser
+         */
         for (int i = 0; i < this.hauteur+1; i++) {
             for (int j = 0; j < this.largeur+1; j++) {
                 grille[i][j] = " .";
@@ -92,7 +104,9 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
 
     @Override
     public String toString() {
-        // TODO : Créer une grille de caractères représentant le plateau de jeu puis retourner la chaîne de caractères la représentant.
+        /*
+         * Fonction qui permet d'afficher la grille
+         */
         String[][] grille = new String[this.hauteur+1][this.largeur+1];
         
         grille = initGrille(grille);
