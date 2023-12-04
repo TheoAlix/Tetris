@@ -186,22 +186,7 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
         this.plateauChangement();
     }
 
-    public static void main(String[] args){
-        Piece p1 = new T(7,1);
-        Piece p2 = new T(4,0);
-        Piece p3 = new T(4,0);
-        Piece p4 = new Rec(6,0);
-        p1.setPosition(0,0);
-        p2.setPosition(27,26);
-        p3.setPosition(3,2);
-        p4.setPosition(12,12);
-        PlateauPuzzle map = new PlateauPuzzle(30,30);
-        System.out.println("ajouter p1 : " + map.ajouterPiece(p1,p1.x,p1.y));
-        System.out.println("ajouter p2 : " + map.ajouterPiece(p2,p2.x,p2.y));
-        System.out.println("ajouter p3 : " + map.ajouterPiece(p3,p3.x,p3.y));
-        System.out.println("ajouter p4 : " + map.ajouterPiece(p4,p4.x,p4.y));
-        System.out.println(map.toString());
-    }
+   
 }
 
    
