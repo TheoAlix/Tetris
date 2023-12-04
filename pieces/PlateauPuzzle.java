@@ -13,12 +13,12 @@ public class PlateauPuzzle extends AbstractModeleEcoutable{
         map = new ArrayList<Piece>();
     }
 
-    public boolean ajouterPiece(Piece piece, int x, int y) {
+   public boolean ajouterPiece(Piece piece, int x, int y) {
         if (x < 0 || y < 0 || x + piece.largeurActuelle() > this.largeur || x + piece.hauteurActuelle() > this.largeur || y + piece.hauteurActuelle() + piece.longueur > this.hauteur || y + piece.largeurActuelle() + piece.longueur > this.hauteur ||x + 1 > this.largeur || y + 1 > this.hauteur) {
             return false;
         }
         for (Piece p : map) {
-            if (intersect(piece, x, y, p)) {
+            if (intersect(piece, x, y, p) || p.x == x || p.y == y) {
                 return false; 
             }
         }
